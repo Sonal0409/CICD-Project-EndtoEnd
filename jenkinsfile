@@ -4,7 +4,7 @@ pipeline{
         maven 'mymaven'
     }
     stages{
-        stage('Checkout Code')
+        stage('Checkout the Code')
         {
             steps{
                 git 'https://github.com/Sonal0409/DevOpsCodeDemo.git'
