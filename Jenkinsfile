@@ -43,6 +43,16 @@ pipeline{
              
                 }
             }
+
+  stage('Deploy the image in kubernetes'){
+        steps{
+        step([$class: 'KubernetesEngineBuilder', projectId: 'gold-subset-471602-p6', clusterName: 'cluster-1', location: 'us-central1-a', manifestPattern: 'deployment.yml', credentialsId: 'ci-cd-gke', verifyDeployments: true])
+            }
+
+    }
+
+
+
         }
 
 
