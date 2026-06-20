@@ -35,8 +35,12 @@ pipeline{
         stage('Continous Delivery - Docker push Image') {
             steps{
                 // login via terminal using docker login command
-                sh 'docker tag myprojectimage:latest sonal04/myprojectimage:latest'
-                sh 'docker push sonal04/myprojectimage:latest'
+                withCredentials([string(credentialsId: 'DOCKERHUB_TOKEN', variable: 'DOCKERHUB_TOKEN')]) {
+    sh 'docker login -u sonal04 -p $DOCKERHUB_TOKEN'
+    sh 'docker tag myprojectimage:latest sonal04/myprojectimage:latest'
+    sh 'docker push sonal04/myprojectimage:latest'
+}
+             
                 }
             }
         }
